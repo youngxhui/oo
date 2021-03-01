@@ -5,6 +5,12 @@
 ## Dart
 
 ```sh
-protoc --dart_out=grpc:rocket/lib/src/generated -Iprotos protos/helloworld.proto
+protoc --dart_out=grpc:rocket/lib/src/protos -Iprotos protos/helloworld.proto
+```
+
+## Go
+
+```sh
+protoc -I . protos/hello.proto --go_out=plugins=grpc:boot/protos
 ```
 

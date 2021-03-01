@@ -1,0 +1,15 @@
+syntax="proto3";
+
+option go_package=".;protos";
+
+import "protos/result.proto";
+
+service UserSrv {
+    rpc Login (UserInfo) returns (Result);
+}
+
+message UserInfo {
+    string username = 1;
+    string password = 2;
+    string device = 3;
+}
