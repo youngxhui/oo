@@ -1,3 +1,6 @@
 [submodule "rocket"]
 	path = rocket
 	url = https://github.com/youngxhui/rocket.git
+[submodule "boot"]
+	path = boot
+	url = https://github.com/youngxhui/boot
