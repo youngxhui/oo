@@ -2,7 +2,9 @@ syntax="proto3";
 
 option go_package=".;protos";
 
-import "protos/result.proto";
+package protos;
+
+import "base.proto";
 
 service UserSrv {
     rpc Login (UserInfo) returns (Result);

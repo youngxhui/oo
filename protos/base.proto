@@ -2,7 +2,9 @@ syntax = "proto3";
 
 option go_package=".;protos";
 
-import "google/protobuf/any.proto";
+package protos;
+
+import "any.proto";
 
 message Result {
     int32 code = 1;
