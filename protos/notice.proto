@@ -1,0 +1,13 @@
+syntax="proto3";
+
+option go_package=".;protos";
+
+package protos;
+
+import "base.proto";
+
+service Notice {
+    rpc ErrorWaring  (Empty) returns (stream Result);
+} 
+
+

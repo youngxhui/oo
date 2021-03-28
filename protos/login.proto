@@ -15,3 +15,9 @@ message UserInfo {
     string password = 2;
     string device = 3;
 }
+
+message Success {
+    string Token = 1;
+}
+
+
