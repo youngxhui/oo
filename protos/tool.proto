@@ -1,0 +1,20 @@
+syntax="proto3";
+
+option go_package=".;protos";
+
+package protos;
+
+message Tool {
+    int32 id = 1;
+    int32 machineId  = 2;
+    Status status = 3;
+}
+
+enum Status {
+    // 健康
+    Health = 0;
+    // 即将损坏
+    Waring = 1;
+    // 已经损坏
+    Damage = 2;
+}
