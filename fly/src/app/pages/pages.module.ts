@@ -3,20 +3,25 @@ import { CommonModule } from '@angular/common';
 
 import { PagesRoutingModule } from './pages-routing.module';
 import { IndexComponent } from './index/index.component';
-import { LayoutsModule } from '../layouts/layouts.module';
-import { ComponentsModule } from '../components/components.module';
+import { SharedModule } from '../shared/shared.module';
+import { RealTimeComponent } from './real-time/real-time.component';
+import { ToolDetailComponent } from './tool-detail/tool-detail.component';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 
 @NgModule({
     declarations: [
-        IndexComponent
+        IndexComponent,
+        RealTimeComponent,
+        ToolDetailComponent,
     ],
     imports: [
         CommonModule,
         PagesRoutingModule,
-        LayoutsModule,
-        ComponentsModule,
-
+        SharedModule,
+        NgxEchartsModule.forRoot({
+            echarts: () => import('echarts')
+        })
     ]
 })
 export class PagesModule {
