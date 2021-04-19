@@ -1,15 +1,106 @@
 syntax="proto3";
 
 option go_package="./protos";
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
 
 package protos;
 
+service ToolService {
+  rpc ListTools(ListToolsRequest) returns (ListToolsResponse) {
+    option (google.api.http) = {
+      get: "/v1/Tools"
+    };
+  }
+
+  rpc GetTool(GetToolRequest) returns (Tool) {
+    option (google.api.http) = {
+      get: "/v1/{id=Tools/*}"
+    };
+  }
+
+  rpc CreateTool(CreateToolRequest) returns (Tool) {
+    option (google.api.http) = {
+      post: "/v1/Tools"
+      body: "Tool"
+    };
+  }
+
+  rpc UpdateTool(UpdateToolRequest) returns (Tool) {
+    option (google.api.http) = {
+      patch: "/v1/{Tool.id=Tools/*}"
+      body: "Tool"
+    };
+  }
+
+  rpc DeleteTool(DeleteToolRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/v1/{id=Tools/*}"
+    };
+  }
+}
+
+// message Tool {
+// ! This should be defined elsewere
+// }
+
+message ListToolsRequest {
+  // The parent resource name, for example, "shelves/shelf1"
+  string parent = 1;
+
+  // The maximum number of items to return.
+  int32 page_size = 2;
+
+  // The next_page_token value returned from a previous List request, if any.
+  string page_token = 3;
+}
+
+message ListToolsResponse {
+  // The field name should match the noun "Tool" in the method name.
+  // There will be a maximum number of items returned based on the page_size field in the request.
+  repeated Tool Tools = 1;
+  
+  // Token to retrieve the next page of results, or empty if there are no more results in the list.
+  string next_page_token = 2;
+}
+
+message GetToolRequest {
+  // The field will contain name of the resource requested.
+  int32 id = 1;
+}
+
+message CreateToolRequest {
+  // The parent resource name where the Tool is to be created.
+  string parent = 1;
+
+  // The Tool id to use for this Tool.
+  string Tool_id = 2;
+
+  // The Tool resource to create.
+  // The field name should match the Noun in the method name.
+  Tool Tool = 3;
+}
+
+message UpdateToolRequest {
+  // The Tool resource which replaces the resource on the server.
+  Tool Tool = 1;
+
+}
+
+message DeleteToolRequest {
+  // The resource name of the Tool to be deleted.
+  int32 id = 1;
+}
+
+
+// 刀具
 message Tool {
     int32 id = 1;
     int32 machineId  = 2;
     Status status = 3;
 }
 
+// 刀具状态
 enum Status {
     // 健康
     Health = 0;

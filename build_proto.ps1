@@ -4,6 +4,11 @@ $NG_TARGET="fly/src/proto"
 $GO_COMMON_TARGET="boot/protos/common"
 $DART_GOOGLE_API_TARGET="rocket/lib/google/protobuf"
 $JAVA_TARGET="bootstrap/build/generated/source/proto/main/grpc"
+
+Write-Output("♻️ Delete, 🐹 golang, 🔱 gRPC gateway, 🦤 flutter, 📐 Angular ")
+Write-Output("")
+
+
 Write-Output("📦开始编译")
 Get-ChildItem .\protos -Include *.proto -Recurse | ForEach-Object -Process {
     if ($_ -is [System.IO.FileInfo]) {

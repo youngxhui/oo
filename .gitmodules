@@ -4,3 +4,7 @@
 [submodule "boot"]
 	path = boot
 	url = https://github.com/youngxhui/boot
+
+[submodule "fly"]
+	path = fly
+	url = https://github.com/youngxhui/fly.git
