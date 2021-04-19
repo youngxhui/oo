@@ -6,19 +6,23 @@ import "google/api/annotations.proto";
 
 package protos;
 
+// tool 刀具服务
 service ToolService {
+  // 获取所有的刀具情况
   rpc ListTools(ListToolsRequest) returns (ListToolsResponse) {
     option (google.api.http) = {
       get: "/v1/Tools"
     };
   }
 
+  // 通过 id 获取当前刀具
   rpc GetTool(GetToolRequest) returns (Tool) {
     option (google.api.http) = {
       get: "/v1/{id=Tools/*}"
     };
   }
 
+  // 添加一个刀具
   rpc CreateTool(CreateToolRequest) returns (Tool) {
     option (google.api.http) = {
       post: "/v1/Tools"
@@ -26,6 +30,7 @@ service ToolService {
     };
   }
 
+  // 更新刀具信息
   rpc UpdateTool(UpdateToolRequest) returns (Tool) {
     option (google.api.http) = {
       patch: "/v1/{Tool.id=Tools/*}"
@@ -33,6 +38,7 @@ service ToolService {
     };
   }
 
+  // 删除刀具
   rpc DeleteTool(DeleteToolRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       delete: "/v1/{id=Tools/*}"
@@ -40,19 +46,10 @@ service ToolService {
   }
 }
 
-// message Tool {
-// ! This should be defined elsewere
-// }
-
+// 请求页数
 message ListToolsRequest {
-  // The parent resource name, for example, "shelves/shelf1"
-  string parent = 1;
-
-  // The maximum number of items to return.
-  int32 page_size = 2;
-
-  // The next_page_token value returned from a previous List request, if any.
-  string page_token = 3;
+  // 页数
+  int64 page_size = 1;
 }
 
 message ListToolsResponse {
@@ -103,7 +100,7 @@ message Tool {
 // 刀具状态
 enum Status {
     // 健康
-    Health = 0;
+    Health = 0; 
     // 即将损坏
     Waring = 1;
     // 已经损坏
