@@ -49,7 +49,9 @@ service ToolService {
 // 请求页数
 message ListToolsRequest {
   // 页数
-  int64 page_size = 1;
+  int32 page = 1;
+  int32 size = 2;
+  
 }
 
 message ListToolsResponse {

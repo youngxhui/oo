@@ -7,7 +7,7 @@ package protos;
 import "google/api/annotations.proto";
 
 service UserService {
-
+  // 通过 id 获取用户
   rpc GetUser(GetUserRequest) returns (User) {
     option (google.api.http) = {
       get: "/v1/{id=users/*}"
@@ -45,9 +45,6 @@ message GetUserRequest {
 }
 
 message LoginUserRequest {
-  string username = 1;
-  string password = 2;
-  string device = 3;
   User user = 4;
 }
 
