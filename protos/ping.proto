@@ -3,15 +3,9 @@ syntax="proto3";
 option go_package="/protos";
 package protos;
 
-import "google/api/annotations.proto";
-
 service Ping {
 
-  rpc Ping (PingRequest) returns (PongReply) {
-    option (google.api.http) = {
-      get: '/v1/ping'
-    };
-  };
+  rpc Ping (PingRequest) returns (PongReply) {};
 }
 
 message PingRequest {

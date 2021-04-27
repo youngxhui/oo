@@ -16,7 +16,6 @@ Get-ChildItem .\protos -Include *.proto -Recurse | ForEach-Object -Process {
         # 删除旧文件
         $file_name = ($name -split "\.")[0]
         $del_go_file_name = $file_name + ".pb.go"
-        $del_go_gw_file_name = $file_name + ".pb.gw.go"
         $del_dart_pb_file = $file_name + ".pd.dart"
         $del_dart_enum_file = $file_name + ".pbenum.dart"
         $del_dart_json_file = $file_name + ".pdjson.dart"
@@ -24,7 +23,6 @@ Get-ChildItem .\protos -Include *.proto -Recurse | ForEach-Object -Process {
         $del_ng_conf_file = $file_name + ".pdconf.ts"
         $del_ng_sc_file = $file_name + ".pbsc.ts"
         Write-Output("♻️ 🐹    `t"+$del_go_file_name)
-        Write-Output("♻️ 🔱    `t"+$del_go_gw_file_name)
         Write-Output("♻️ 🦤    `t"+$del_dart_pb_file)
         Write-Output("♻️ 🦤    `t"+$del_dart_enum_file)
         Write-Output("♻️ 🦤    `t"+$del_dart_json_file)
@@ -33,7 +31,6 @@ Get-ChildItem .\protos -Include *.proto -Recurse | ForEach-Object -Process {
         Write-Output("♻️ 📐    `t"+$del_ng_sc_file)
         Try {
             del $GO_TARGET/protos/$del_go_file_name -ErrorAction stop
-            del $GO_TARGET/protos/$del_go_gw_file_name -ErrorAction stop
             del $DART_TARGET/$del_dart_pb_file -ErrorAction stop
             del $DART_TARGET/$del_dart_enum_file -ErrorAction stop
             del $DART_TARGET/$del_dart_json_file -ErrorAction stop
@@ -49,7 +46,6 @@ Get-ChildItem .\protos -Include *.proto -Recurse | ForEach-Object -Process {
         Write-Output("🎁 "+$name)
         
         protoc -I protos/. ./protos/$name --go_out=plugins=grpc:$GO_TARGET
-        protoc -I protos/. ./protos/$name --grpc-gateway_out=logtostderr=true:$GO_TARGET 
         protoc --dart_out=grpc:$DART_TARGET -I protos/. protos/$name
         protoc --plugin=protoc-gen-ng=.\fly\node_modules\.bin\protoc-gen-ng.cmd --ng_out=$NG_TARGET -I protos/. .\protos\$name
         Write-Output("")

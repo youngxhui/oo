@@ -4,37 +4,16 @@ option go_package = "./protos";
 
 package protos;
 
-import "google/api/annotations.proto";
-
 service UserService {
   // 通过 id 获取用户
-  rpc GetUser(GetUserRequest) returns (User) {
-    option (google.api.http) = {
-      get: "/v1/{id=users/*}"
-    };
-  }
+  rpc GetUser(GetUserRequest) returns (User) {}
   // 用户注册
-  rpc RegisterUser(RegisterUserRequest) returns (User) {
-    option (google.api.http) = {
-      post: "/v1/register"
-      body: "user"
-    };
-  }
+  rpc RegisterUser(RegisterUserRequest) returns (User) {}
   // 用户登录
-  rpc LoginUser(LoginUserRequest) returns (LoginUserResponse) {
-    option (google.api.http) = {
-      post: "/v1/login"
-      body: "user"
-    };
-  }
+  rpc LoginUser(LoginUserRequest) returns (LoginUserResponse) {}
 
   // 用户注销
-  rpc LoginOffUser(DeleteUserRequest) returns (LoginOffResponse) {
-    option (google.api.http) = {
-      post: "/v1/loginOff"
-      body: "*"
-    };
-  }
+  rpc LoginOffUser(DeleteUserRequest) returns (LoginOffResponse) {}
 }
 
 

@@ -2,48 +2,25 @@ syntax="proto3";
 
 option go_package="./protos";
 import "google/protobuf/empty.proto";
-import "google/api/annotations.proto";
 
 package protos;
 
 // tool 刀具服务
 service ToolService {
   // 获取所有的刀具情况
-  rpc ListTools(ListToolsRequest) returns (ListToolsResponse) {
-    option (google.api.http) = {
-      get: "/v1/Tools"
-    };
-  }
+  rpc ListTools(ListToolsRequest) returns (ListToolsResponse) {}
 
   // 通过 id 获取当前刀具
-  rpc GetTool(GetToolRequest) returns (Tool) {
-    option (google.api.http) = {
-      get: "/v1/{id=Tools/*}"
-    };
-  }
+  rpc GetTool(GetToolRequest) returns (Tool) {}
 
   // 添加一个刀具
-  rpc CreateTool(CreateToolRequest) returns (Tool) {
-    option (google.api.http) = {
-      post: "/v1/Tools"
-      body: "Tool"
-    };
-  }
+  rpc CreateTool(CreateToolRequest) returns (Tool) {}
 
   // 更新刀具信息
-  rpc UpdateTool(UpdateToolRequest) returns (Tool) {
-    option (google.api.http) = {
-      patch: "/v1/{Tool.id=Tools/*}"
-      body: "Tool"
-    };
-  }
+  rpc UpdateTool(UpdateToolRequest) returns (Tool) {}
 
   // 删除刀具
-  rpc DeleteTool(DeleteToolRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      delete: "/v1/{id=Tools/*}"
-    };
-  }
+  rpc DeleteTool(DeleteToolRequest) returns (google.protobuf.Empty) {}
 }
 
 // 请求页数
