@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+option go_package = "./protos";
+
+package protos;
+
+import "google/protobuf/empty.proto";
+// import "google/protobuf/field_mask.proto";
+
+// Generated according to https://cloud.google.com/apis/design/standard_methods
+service RoleService {
+  rpc ListRoles(ListRolesRequest) returns (ListRolesResponse) {}
+
+  rpc GetRole(GetRoleRequest) returns (Role) {}
+
+  rpc CreateRole(CreateRoleRequest) returns (Role) {}
+
+  rpc UpdateRole(UpdateRoleRequest) returns (Role) {}
+
+  rpc DeleteRole(DeleteRoleRequest) returns (google.protobuf.Empty) {}
+}
+
+message Role {
+// ! This should be defined elsewere
+}
+
+message ListRolesRequest {
+  // The parent resource name, for example, "shelves/shelf1"
+  string parent = 1;
+
+  // The maximum number of items to return.
+  int32 page_size = 2;
+
+  // The next_page_token value returned from a previous List request, if any.
+  string page_token = 3;
+}
+
+message ListRolesResponse {
+  // The field name should match the noun "Role" in the method name.
+  // There will be a maximum number of items returned based on the page_size field in the request.
+  repeated Role Roles = 1;
+
+  // Token to retrieve the next page of results, or empty if there are no more results in the list.
+  string next_page_token = 2;
+}
+
+message GetRoleRequest {
+  // The field will contain name of the resource requested.
+  string name = 1;
+}
+
+message CreateRoleRequest {
+  // The parent resource name where the Role is to be created.
+  string parent = 1;
+
+  // The Role id to use for this Role.
+  string Role_id = 2;
+
+  // The Role resource to create.
+  // The field name should match the Noun in the method name.
+  Role Role = 3;
+}
+
+message UpdateRoleRequest {
+  // The Role resource which replaces the resource on the server.
+  Role Role = 1;
+
+  // The update mask applies to the resource. For the `FieldMask` definition,
+  // see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+//   FieldMask update_mask = 2;
+}
+
+message DeleteRoleRequest {
+  // The resource name of the Role to be deleted.
+  string name = 1;
+}

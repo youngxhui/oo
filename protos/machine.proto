@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+option go_package = "./protos";
+
+package protos;
+
+import "google/protobuf/empty.proto";
+
+// Generated according to https://cloud.google.com/apis/design/standard_methods
+service MachineService {
+  rpc ListMachines(ListMachinesRequest) returns (ListMachinesResponse) {}
+
+  rpc GetMachine(GetMachineRequest) returns (Machine) {}
+
+  rpc CreateMachine(CreateMachineRequest) returns (Machine) {}
+
+  rpc UpdateMachine(UpdateMachineRequest) returns (Machine) {}
+
+  rpc DeleteMachine(DeleteMachineRequest) returns (google.protobuf.Empty) {}
+}
+
+message Machine {
+  int32 id = 1;
+  string name = 2;
+}
+
+message ListMachinesRequest {
+
+  int32 page = 2;
+  int32 size = 3;
+
+}
+
+message ListMachinesResponse {
+  repeated Machine Machines = 1;
+}
+
+message GetMachineRequest {
+  // The field will contain name of the resource requested.
+  int32 id = 1;
+}
+
+message CreateMachineRequest {
+  Machine Machine = 3;
+}
+
+message UpdateMachineRequest {
+  // The Machine resource which replaces the resource on the server.
+  Machine Machine = 1;
+}
+
+message DeleteMachineRequest {
+  // The resource name of the Machine to be deleted.
+  int32 id = 1;
+}

@@ -4,10 +4,31 @@ option go_package="./protos";
 
 package protos;
 
-import "base.proto";
+message Notice {
+    int32 id = 1;
+    // 日期
+    string date = 2;
+    // 内容
+    string content = 3;
+    // 用户
+    int32 userId = 4;
+}
 
-service Notice {
-    rpc ErrorWaring  (Empty) returns (stream Result);
-} 
+enum NoticeType {
+    // 未读
+    unRead = 0;
+    // 已读
+    read = 1;
+    // 所有
+    all = 2;
+}
 
+message NoticeRequest {
+    int32 userId = 1;
+    NoticeType type = 2;
+}
+
+message NoticeResponse {
+    repeated Notice notices = 1;
+}
 
